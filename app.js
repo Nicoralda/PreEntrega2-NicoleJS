@@ -1,0 +1,118 @@
+// Control de ingresos y egresos para el usuario
+
+// Definiendo los arrays para las categorías de gastos e ingresos
+
+const categoriasGastos = [
+    '1. Alimentación', '2. Transporte', '3. Vivienda', '4. Salud', '5. Ocio'
+];
+const categoriasIngresos = [
+    '1. Sueldo', '2. Trabajo extra', '3. Inversiones', '4. Regalos', '5. Otro'
+];
+
+const gastos = [];
+const ingresos = [];
+
+let totalGastos = 0;
+let totalIngresos = 0;
+
+// Función para registrar los gastos
+
+function registrarGasto () {
+    const tipoGasto = prompt('Ingresa el tipo de gasto, por ejemplo: "Me comí una arepa"');
+    const montoGasto = parseFloat(prompt('Ingresa el monto del gasto'));
+        if (isNaN(montoGasto) || montoGasto <= 0) {
+            alert('Error: recuerda que el monto del gasto debe ser un número mayor que cero');
+            return;
+        }
+
+    totalGastos += montoGasto;
+    alert(`El total de tu gasto es de: ${totalGastos}`);
+
+// Almacenar el gasto en el array
+
+    gastos.push ({tipo: tipoGasto, monto: montoGasto});
+
+// Función para mostrar los gastos registrados
+
+function mostrarGastos () {
+    if (gastos.length === 0) {
+        alert('No hay gastos registrados este mes');
+    } else {
+        alert('Gastos registrados de este mes:');
+        gastos.forEach(gasto => {
+            alert(`${gasto.tipo}: ${gasto.monto}`);
+        });
+    }
+}
+
+    const verGastos = prompt('¿Deseas ver los gastos de tu mes? \n1. Sí \n2. No');
+        if (verGastos === '1') {
+            mostrarGastos();
+        } else {
+            alert('¡Gracias por participar!');
+        }
+}
+
+
+// Función para registrar los ingresos
+
+function registrarIngreso () {
+    const categoriaIngreso = parseInt(prompt(`Por favor, elige la categoría de tu ingreso: \n${categoriasIngresos.join("\n")}`));
+        if (isNaN(categoriaIngreso) || categoriaIngreso < 1 || categoriaIngreso > categoriasIngresos.length) {
+            alert('Categoría inválida. Inténtalo de nuevo, por fis');
+            return;
+        }
+
+        const tipoIngreso = prompt('Ingresa el tipo de ingreso, por ejemplo: "Me ascendieron en el trabajo"');
+        const montoIngreso = parseFloat(prompt('Ingresa el monto del ingreso'));
+            if (isNaN(montoIngreso) || montoIngreso <= 0) {
+                alert('Error: recuerda que el monto del ingreso debe ser un número mayor que cero');
+                return;
+            }
+
+        totalIngresos += montoIngreso;
+        alert(`El total de tu ingreso es de: ${totalIngresos}`);
+
+// Almacenar el ingreso en el array
+
+        ingresos.push ({tipo: tipoIngreso, monto: montoIngreso});
+
+// Función para mostrar los ingresos registrados
+
+    function mostrarIngresos () {
+        if (ingresos.length === 0) {
+            alert('No hay ingresos registrados este mes');
+        } else {
+            alert('Ingresos registrados de este mes:');
+            ingresos.forEach(ingreso => {
+                alert(`${ingreso.tipo}: ${ingreso.monto}`);
+            });
+        }
+    }
+
+        const verIngresos = prompt('¿Deseas ver los ingresos de tu mes? \n1. Sí \n2. No');
+            if (verIngresos === '1') {
+                mostrarIngresos();
+            } else {
+                alert('¡Gracias por participar!');
+            }
+
+}
+
+// Función para solicitar la categoría del dinero utilizado al usuario
+
+const tipoRegistro = prompt('Por favor, elige si quieres agregar un gasto o un ingreso: \nGasto \nIngreso');
+
+    if (tipoRegistro ==='gasto') {
+        const categoriaGasto = parseInt(prompt(`Por favor, elige (en número) la categoría de tu gasto: \n${categoriasGastos.join ("\n")}`));
+
+    if (isNaN(categoriaGasto) || categoriaGasto < 1 || categoriaGasto > categoriasGastos.length) {
+        alert('Categoría inválida. Inténtalo de nuevo, por fis');
+    }
+
+    registrarGasto(); 
+} else if (tipoRegistro === 'ingreso') {
+    registrarIngreso();
+} else {
+    alert('Tipo de categoría inválida. Por favor, inténtalo de nuevo :)');
+}
