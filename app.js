@@ -12,8 +12,12 @@ const categoriasIngresos = [
 const gastos = [];
 const ingresos = [];
 
+// Definiendo las variables
+
 let totalGastos = 0;
 let totalIngresos = 0;
+
+let seguirRegistrando = true
 
 // Función para registrar los gastos
 
@@ -28,6 +32,16 @@ function registrarGasto () {
     totalGastos += montoGasto;
     alert(`El total de tu gasto es de: ${totalGastos}`);
 
+    let seguirRegistrando;
+    do {
+        seguirRegistrando = prompt('¿Desea seguir registrando datos? \n1. Sí \n2. No')
+        if (seguirRegistrando === '1') {
+            registrarGasto();
+        } else {
+            alert('¡Gracias por participar!')
+        }
+    } while (seguirRegistrando === '1');
+
 // Almacenar el gasto en el array
 
     gastos.push ({tipo: tipoGasto, monto: montoGasto});
@@ -38,18 +52,18 @@ function mostrarGastos () {
     if (gastos.length === 0) {
         alert('No hay gastos registrados este mes');
     } else {
-        alert('Gastos registrados de este mes:');
+        alert('Último gasto registrado de este mes:');
         gastos.forEach(gasto => {
             alert(`${gasto.tipo}: ${gasto.monto}`);
         });
     }
 }
 
-    const verGastos = prompt('¿Deseas ver los gastos de tu mes? \n1. Sí \n2. No');
+    const verGastos = prompt('¿Deseas ver el último gasto de tu mes? \n1. Sí \n2. No');
         if (verGastos === '1') {
             mostrarGastos();
         } else {
-            alert('¡Gracias por participar!');
+            alert('¡Gracias por participar en mi segunda pre-entrega!');
         }
 }
 
@@ -63,15 +77,25 @@ function registrarIngreso () {
             return;
         }
 
-        const tipoIngreso = prompt('Ingresa el tipo de ingreso, por ejemplo: "Me ascendieron en el trabajo"');
-        const montoIngreso = parseFloat(prompt('Ingresa el monto del ingreso'));
-            if (isNaN(montoIngreso) || montoIngreso <= 0) {
-                alert('Error: recuerda que el monto del ingreso debe ser un número mayor que cero');
-                return;
-            }
+    const tipoIngreso = prompt('Ingresa el tipo de ingreso, por ejemplo: "Me ascendieron en el trabajo"');
+    const montoIngreso = parseFloat(prompt('Ingresa el monto del ingreso'));
+        if (isNaN(montoIngreso) || montoIngreso <= 0) {
+            alert('Error: recuerda que el monto del ingreso debe ser un número mayor que cero');
+            return;
+        }
 
-        totalIngresos += montoIngreso;
-        alert(`El total de tu ingreso es de: ${totalIngresos}`);
+    totalIngresos += montoIngreso;
+    alert(`El total de tu ingreso es de: ${totalIngresos}`);
+
+    let seguirRegistrando;
+    do {
+        seguirRegistrando = prompt('¿Desea seguir registrando datos? \n1. Sí \n2. No')
+        if (seguirRegistrando === '1') {
+            registrarIngreso();
+        } else {
+            alert('¡Gracias por participar!')
+        }
+    } while (seguirRegistrando === '1');
 
 // Almacenar el ingreso en el array
 
@@ -94,14 +118,14 @@ function registrarIngreso () {
             if (verIngresos === '1') {
                 mostrarIngresos();
             } else {
-                alert('¡Gracias por participar!');
+                alert('¡Gracias por participar en mi segunda pre-entrega!');
             }
 
 }
 
 // Función para solicitar la categoría del dinero utilizado al usuario
 
-const tipoRegistro = prompt('Por favor, elige si quieres agregar un gasto o un ingreso: \nGasto \nIngreso');
+const tipoRegistro = prompt('Por favor, elige si quieres agregar un gasto o un ingreso: \nGasto \nIngreso').toLocaleLowerCase();
 
     if (tipoRegistro ==='gasto') {
         const categoriaGasto = parseInt(prompt(`Por favor, elige (en número) la categoría de tu gasto: \n${categoriasGastos.join ("\n")}`));
