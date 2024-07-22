@@ -22,7 +22,7 @@ let seguirRegistrando = true
 // Función para registrar los gastos
 
 function registrarGasto () {
-    const tipoGasto = prompt('Ingresa el tipo de gasto, por ejemplo: "Me comí una arepa"');
+    const tipoGasto = prompt('Describe el tipo de gasto, por ejemplo: "Me comí una arepa"');
     const montoGasto = parseFloat(prompt('Ingresa el monto del gasto'));
         if (isNaN(montoGasto) || montoGasto <= 0) {
             alert('Error: recuerda que el monto del gasto debe ser un número mayor que cero');
@@ -30,7 +30,7 @@ function registrarGasto () {
         }
 
     totalGastos += montoGasto;
-    alert(`El total de tu gasto es de: ${totalGastos}`);
+    alert(`El total de tus gastos es de: ${totalGastos}`);
 
     let seguirRegistrando;
     do {
@@ -52,7 +52,7 @@ function mostrarGastos () {
     if (gastos.length === 0) {
         alert('No hay gastos registrados este mes');
     } else {
-        alert('Último gasto registrado de este mes:');
+        alert('Tu último gasto registrado de este mes es:');
         gastos.forEach(gasto => {
             alert(`${gasto.tipo}: ${gasto.monto}`);
         });
@@ -77,15 +77,15 @@ function registrarIngreso () {
             return;
         }
 
-    const tipoIngreso = prompt('Ingresa el tipo de ingreso, por ejemplo: "Me ascendieron en el trabajo"');
-    const montoIngreso = parseFloat(prompt('Ingresa el monto del ingreso'));
+    const tipoIngreso = prompt('Describe el tipo de ingreso, por ejemplo: "Me ascendieron en el trabajo"');
+    const montoIngreso = parseFloat(prompt('Coloca el monto del ingreso'));
         if (isNaN(montoIngreso) || montoIngreso <= 0) {
             alert('Error: recuerda que el monto del ingreso debe ser un número mayor que cero');
             return;
         }
 
     totalIngresos += montoIngreso;
-    alert(`El total de tu ingreso es de: ${totalIngresos}`);
+    alert(`El total de tus ingresos es de: ${totalIngresos}`);
 
     let seguirRegistrando;
     do {
@@ -107,7 +107,7 @@ function registrarIngreso () {
         if (ingresos.length === 0) {
             alert('No hay ingresos registrados este mes');
         } else {
-            alert('Ingresos registrados de este mes:');
+            alert('Tu último ingreso registrado de este mes es:');
             ingresos.forEach(ingreso => {
                 alert(`${ingreso.tipo}: ${ingreso.monto}`);
             });
@@ -125,7 +125,7 @@ function registrarIngreso () {
 
 // Función para solicitar la categoría del dinero utilizado al usuario
 
-const tipoRegistro = prompt('Por favor, elige si quieres agregar un gasto o un ingreso: \nGasto \nIngreso').toLocaleLowerCase();
+const tipoRegistro = prompt('Por favor, escribe si quieres agregar un gasto o un ingreso (recuerda no colocar números): \nGasto \nIngreso').toLocaleLowerCase();
 
     if (tipoRegistro ==='gasto') {
         const categoriaGasto = parseInt(prompt(`Por favor, elige (en número) la categoría de tu gasto: \n${categoriasGastos.join ("\n")}`));
